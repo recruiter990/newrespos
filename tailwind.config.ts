@@ -1,72 +1,82 @@
-import type { Config } from "tailwindcss";
+import type { Config } from "tailwindcss"
 
 const config: Config = {
+  darkMode: ["class"],
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  darkMode: "class",
   theme: {
     extend: {
       colors: {
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#6366F1",
-          light: "#818CF8",
-          dark: "#4F46E5",
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: "#10B981",
-          light: "#34D399",
-          dark: "#059669",
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
-          DEFAULT: "#F59E0B",
-          light: "#FBBF24",
-          dark: "#D97706",
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
         },
-        dark: {
-          DEFAULT: "#0F172A",
-          light: "#1E293B",
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
         },
-        gray: {
-          DEFAULT: "#64748B",
-          light: "#94A3B8",
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
         },
-        light: "#F8FAFC",
       },
-      fontFamily: {
-        heading: ["var(--font-heading)", "Inter", "sans-serif"],
-        body: ["var(--font-body)", "Inter", "sans-serif"],
-        mono: ["var(--font-mono)", "JetBrains Mono", "monospace"],
-      },
-      backgroundImage: {
-        "gradient-primary": "linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)",
-        "gradient-dark": "linear-gradient(135deg, #0F172A 0%, #1E293B 100%)",
-        "gradient-glow": "radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%)",
-      },
-      animation: {
-        "fade-in": "fadeIn 0.6s ease-out",
-        "fade-in-up": "fadeInUp 0.6s ease-out",
-        "scale-in": "scaleIn 0.4s ease-out",
-      },
-      keyframes: {
-        fadeIn: {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
-        },
-        fadeInUp: {
-          "0%": { opacity: "0", transform: "translateY(20px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
-        scaleIn: {
-          "0%": { opacity: "0", transform: "scale(0.9)" },
-          "100%": { opacity: "1", transform: "scale(1)" },
-        },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
     },
   },
   plugins: [],
-};
-export default config;
+}
 
+export default config
+```
+
+---
+
+## 📝 Steps:
+
+1. **Go to GitHub repo**
+2. **Edit** `app/globals.css` → paste code from FIX 1
+3. **Edit** `tailwind.config.ts` → paste code from FIX 2
+4. **Commit changes**
+5. **Vercel auto-rebuilds**
+
+---
+
+Or use this **Cursor prompt** (Cmd+L):
+```
+The Vercel build is failing with error: "The border-border class does not exist"
+
+Fix these 2 files:
+
+1. app/globals.css - Remove any @apply border-border or similar classes. Replace with proper CSS variables.
+
+2. tailwind.config.ts - Make sure "border" color is defined as: border: "hsl(var(--border))"
+
+The issue is that somewhere in globals.css there's a reference to "border-border" class that doesn't exist in the Tailwind config.
